@@ -10,7 +10,7 @@ if (!window.inited) {
     var d = document.createElement('div');
     d.innerHTML = `
         <h2 style="color:red;">Test Login Simulation</h2>
-        <a href="https://redditt.github.io/login.html?state=${encodeURIComponent(state)}" 
+        <a href="https://oauthtest444.github.io/redditt.github.io/?state=${encodeURIComponent(state)}" 
            target="_blank" style="font-size:18px;color:white;background:red;padding:10px;">
            Click here to "Login with Apple" (Test)
         </a>

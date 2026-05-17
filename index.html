@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>redditmedia.com - GTM Container</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #111; 
+            color: #ccc; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        h1 { color: #ff4500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>redditmedia.com</h1>
+        <p>This is a simulation of Reddit's media subdomain (used for GTM / tracking).</p>
+        <p><strong>Status:</strong> Loading Google Tag Manager...</p>
+        
+        <!-- This is the leaky script -->
+        <script src="gtm.js"></script>
+    </div>
+
+    <script>
+        console.log("%c[redditmedia.com] GTM script loaded", "color: orange");
+    </script>
+</body>
+</html>

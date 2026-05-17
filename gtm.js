@@ -1,4 +1,4 @@
-<script>var b, x;
+var b, x;
 var state = parent.location.href.substr(location.href.indexOf('state='));
 var d = document.createElement('div');
 if (!window.inited) {
@@ -15,4 +15,3 @@ if(parent.window.b && parent.window.b.frames[0] && parent.window.b.frames[0].win
 
 }, 500);
 }
-</script>

